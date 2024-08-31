@@ -174,9 +174,9 @@ yarn develop
 
 ## นำ Strapi application ลงไปยัง GitHub 
 
-### สร้าง Github Repository
+### 1. สร้าง Github Repository
 
-## Push โปรเจกต์ไปยัง GitHub
+### 2. Push โปรเจกต์ไปยัง GitHub
 
 ```bash
 # เริ่มต้น Git ในโปรเจกต์ของคุณ
@@ -214,11 +214,11 @@ sudo yum install nodejs -y
 node -v && npm -v
 ```
 
-## 3. การสร้างและเปลี่ยนไดเรกทอรีเริ่มต้นของ npm
+### 3. การสร้างและเปลี่ยนไดเรกทอรีเริ่มต้นของ npm
 
 การดำเนินการต่อไปนี้จะช่วยให้คุณแก้ไขปัญหาสิทธิ์ในการเข้าถึงจาก [npmjs.com](https://www.npmjs.com):
 
-1. **สร้างไดเรกทอรี `.npm-global` และตั้งค่าพาธไปยังไดเรกทอรีนี้สำหรับ `node_modules`**
+### 1. **สร้างไดเรกทอรี `.npm-global` และตั้งค่าพาธไปยังไดเรกทอรีนี้สำหรับ `node_modules`**
 
    ```bash
    cd ~
@@ -226,7 +226,7 @@ node -v && npm -v
    npm config set prefix '~/.npm-global'
    ```
 
-2. **สร้าง (หรือแก้ไข) ไฟล์ `~/.profile`**
+### 2. **สร้าง (หรือแก้ไข) ไฟล์ `~/.profile`**
 
    ```bash
    sudo nano ~/.profile
@@ -239,18 +239,18 @@ node -v && npm -v
    export PATH=~/.npm-global/bin:$PATH
    ```
 
-3. **อัปเดตตัวแปรระบบของคุณ**
+### 3. **อัปเดตตัวแปรระบบของคุณ**
 
    ```bash
    source ~/.profile
    ```
 
-##  4. ติดตั้ง Git
+###  4. ติดตั้ง Git
    ```bash
    sudo yum install -y git
    ```
 
-##  5. ติดตั้ง Yarn
+###  5. ติดตั้ง Yarn
    ```bash
    npm install -g yarn
    ```
@@ -267,16 +267,16 @@ cd ./my-project/
 ```bash
 npm add pg
 ```
-## 7. การติดตั้ง Strapi AWS S3 Upload Provider
+### 7. การติดตั้ง Strapi AWS S3 Upload Provider
 
-### ติดตั้ง Strapi AWS S3 Upload Provider
+### **ติดตั้ง Strapi AWS S3 Upload Provider**
 
 ```bash
 npm install @strapi/provider-upload-aws-s3
 ```
 แก้ไขไฟล์ที่ `./config/plugins.js` ด้วยการเพิ่มการตั้งค่าต่อไปนี้:
 
-#### JavaScript
+#### **JavaScript**
 
 ```javascript
 module.exports = ({ env }) => ({
@@ -307,23 +307,13 @@ module.exports = ({ env }) => ({
 });
 ```
 
-## 8. ส่งการเปลี่ยนแปลงไปยัง GitHub
-
-1. **เพิ่มไฟล์ทั้งหมดลงใน staging area:**
+### 8. ส่งการเปลี่ยนแปลงไปยัง GitHub
 
    ```bash
    git add .
-   ```
-
-2. **สร้าง commit ใหม่:**
-
-   ```bash
+   
    git commit -m 'Installed pg, aws-S3 upload provider and updated the config files'
-   ```
 
-3. **ส่งการเปลี่ยนแปลงไปยัง GitHub repository:**
-
-   ```bash
    git push
    ```
 ## 9. การนำเข้าและติดตั้งโปรเจกต์จาก GitHub บน EC2
@@ -333,19 +323,19 @@ cd ~
 git clone https://github.com/your-name/your-project-repo.git
 ```
 
-## 10. ติดตั้งแพ็กเกจสำหรับโปรเจกต์
+### 10. ติดตั้งแพ็กเกจสำหรับโปรเจกต์
 
 ```bash
 cd ./my-project/
 npm install
 NODE_ENV=production npm run build
 ```
-## 11. ติดตั้ง PM2 Runtime
+### 11. ติดตั้ง PM2 Runtime
 
 ```bash
 npm install pm2@latest -g
 ```
-## 12. การตั้งค่า PM2 Runtime
+### 12. การตั้งค่า PM2 Runtime
 
 ตั้งค่าไฟล์ `ecosystem.config.js` เพื่อกำหนดตัวแปรสภาพแวดล้อมที่เชื่อมต่อ Strapi กับฐานข้อมูล
 
@@ -389,7 +379,7 @@ module.exports = {
   ],
 };
 ```
-## 13. เริ่มต้น PM2
+### 13. เริ่มต้น PM2
 
 ใช้คำสั่งต่อไปนี้เพื่อเริ่มต้น PM2 ด้วยไฟล์ `ecosystem.config.js`:
 
