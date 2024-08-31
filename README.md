@@ -134,6 +134,36 @@ Strapi เป็นระบบจัดการเนื้อหาแบบ 
      - `dist`, `build`: โฟลเดอร์ที่เก็บไฟล์ที่สร้างจากการ build โครงการ
      - `.strapi-updater.json`, `.strapi-cloud.json`: ไฟล์การตั้งค่าและการอัปเดตของ Strapi
 
+## วิธีการติดตั้ง Strapi ลง Local Machine ด้วย CLI
+
+### ก่อนที่จะติดตั้ง Strapi ต้องติดตั้ง
+
+- **Node.js**
+- **แพ็กเกจ Node.js**
+  - npm (v6 ขึ้นไป)
+  - yarn
+- **Python** (หากใช้ฐานข้อมูล SQLite)
+
+## การสร้างโปรเจกต์ Strapi
+
+### 1. เปิดเทอร์มินัลแล้วรันคำสั่งต่อไปนี้:
+
+#### ใช้ Yarn
+
+```bash
+yarn create strapi-app my-project
+```
+
+### 2. เลือกประเภทการติดตั้ง Quickstart
+
+- เลือกใช้ฐานข้อมูลเริ่มต้น (SQLite) ซึ่งจะทำให้การตั้งค่าเร็วและง่ายขึ้น
+
+### 3. ข้ามขั้นตอนการล็อกอิน Strapi Cloud
+
+- ใช้ปุ่มลูกศรเพื่อเลือก Skip
+
+
+
 
 
 Start your Strapi application with autoReload enabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-develop)
