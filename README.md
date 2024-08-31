@@ -186,7 +186,7 @@ git init
 git add .
 
 # สร้างคอมมิตแรก
-git commit -m "first commit"
+git commit -m "Add Strapi project"
 
 # ตั้งชื่อสาขาหลักเป็น main
 git branch -M main
@@ -197,3 +197,222 @@ git remote add origin https://github.com/techit6509650419/CS360_Strapi.git
 # พุชโปรเจกต์ไปยัง GitHub
 git push -u origin main
 ```
+## วิธี Deploy Strapi ลง AWS
+
+### 1. สร้าง AWS EC2
+
+### 2. ติดตั้ง Node.js ด้วย npm บน
+
+```bash
+cd ~
+sudo yum update
+...
+sudo yum install -y ca-certificates curl gnupg
+...
+sudo yum install nodejs -y
+...
+node -v && npm -v
+```
+
+## 4. การสร้างและเปลี่ยนไดเรกทอรีเริ่มต้นของ npm
+
+การดำเนินการต่อไปนี้จะช่วยให้คุณแก้ไขปัญหาสิทธิ์ในการเข้าถึงจาก [npmjs.com](https://www.npmjs.com):
+
+1. **สร้างไดเรกทอรี `.npm-global` และตั้งค่าพาธไปยังไดเรกทอรีนี้สำหรับ `node_modules`**
+
+   ```bash
+   cd ~
+   mkdir ~/.npm-global
+   npm config set prefix '~/.npm-global'
+   ```
+
+2. **สร้าง (หรือแก้ไข) ไฟล์ `~/.profile`**
+
+   ```bash
+   sudo nano ~/.profile
+   ```
+
+   เพิ่มบรรทัดเหล่านี้ที่ด้านล่างของไฟล์ `~/.profile`:
+
+   ```bash
+   # set PATH so global node modules install without permission issues
+   export PATH=~/.npm-global/bin:$PATH
+   ```
+
+3. **อัปเดตตัวแปรระบบของคุณ**
+
+   ```bash
+   source ~/.profile
+   ```
+
+##  5. ติดตั้ง Git
+   ```bash
+   sudo yum install -y git
+   ```
+
+##  6. ติดตั้ง Yarn
+   ```bash
+   npm install -g yarn
+   ```
+
+### ติดตั้ง `pg`
+
+ติดตั้งในเครื่องพัฒนา (development machine) ให้ไปที่ไดเรกทอรีรากของโปรเจกต์ Strapi 
+
+```bash
+cd ./my-project/
+```
+จากนั้นติดตั้งแพ็กเกจ `pg`:
+
+```bash
+npm add pg
+```
+## การติดตั้งผู้ให้บริการอัปโหลด AWS S3 ของ Strapi
+
+### 1. ติดตั้งผู้ให้บริการอัปโหลด AWS S3
+
+ไปที่ไดเรกทอรีโปรเจกต์ขและรันคำสั่งต่อไปนี้:
+
+```bash
+npm install @strapi/provider-upload-aws-s3
+```
+
+### 2. เปิดใช้งานและกำหนดค่าผู้ให้บริการ
+
+แก้ไขไฟล์ที่ `./config/plugins.js` ด้วยการเพิ่มการตั้งค่าต่อไปนี้:
+
+#### JavaScript
+
+```javascript
+module.exports = ({ env }) => ({
+  upload: {
+    config: {
+      provider: 'aws-s3',
+      providerOptions: {
+        s3Options: {
+          accessKeyId: env('AWS_ACCESS_KEY_ID'),
+          secretAccessKey: env('AWS_ACCESS_SECRET'),
+          region: env('AWS_REGION'),
+          params: {
+            Bucket: env('AWS_BUCKET_NAME'),
+          },
+        }
+      },
+      // These parameters could solve issues with ACL public-read access — see [this issue](https://github.com/strapi/strapi/issues/5868) for details
+      actionOptions: {
+        upload: {
+          ACL: null
+        },
+        uploadStream: {
+          ACL: null
+        },
+      }
+    },
+  }
+});
+```
+
+## ส่งการเปลี่ยนแปลงไปยัง GitHub
+
+1. **เพิ่มไฟล์ทั้งหมดลงใน staging area:**
+
+   ```bash
+   git add .
+   ```
+
+2. **สร้าง commit ใหม่:**
+
+   ```bash
+   git commit -m 'Installed pg, aws-S3 upload provider and updated the config files'
+   ```
+
+3. **ส่งการเปลี่ยนแปลงไปยัง GitHub repository:**
+
+   ```bash
+   git push
+   ```
+## การนำเข้าและติดตั้งโปรเจกต์จาก GitHub บน EC2
+
+```bash
+cd ~
+git clone https://github.com/your-name/your-project-repo.git
+```
+
+## ติดตั้งแพ็กเกจสำหรับโปรเจกต์
+
+```bash
+cd ./my-project/
+npm install
+NODE_ENV=production npm run build
+```
+## ติดตั้ง PM2 Runtime
+
+```bash
+npm install pm2@latest -g
+```
+คุณสามารถเพิ่มขั้นตอนในการตั้งค่าไฟล์ `ecosystem.config.js` และการตั้งค่าตัวแปรสภาพแวดล้อมใน README.md ของคุณได้ตามนี้:
+
+---
+
+## การตั้งค่า PM2 Runtime
+
+ตั้งค่าไฟล์ `ecosystem.config.js` เพื่อกำหนดตัวแปรสภาพแวดล้อมที่เชื่อมต่อ Strapi กับฐานข้อมูล
+
+### 1. **สร้างและแก้ไขไฟล์ ecosystem.config.js**
+
+```bash
+cd ~
+pm2 init
+sudo nano ecosystem.config.js
+```
+
+### 2. **อัปเดตเนื้อหาไฟล์**
+
+แทนที่เนื้อหาพื้นฐานในไฟล์ `ecosystem.config.js` ด้วย
+
+```javascript
+module.exports = {
+  apps: [
+    {
+      name: 'your-app-name', // ชื่อโปรเจกต์ของคุณ
+      cwd: '/home/ubuntu/my-project', // เส้นทางไปยังโปรเจกต์ของคุณ
+      script: 'npm', // ใช้ npm ในตัวอย่างนี้ สามารถใช้ yarn ได้เช่นกัน
+      args: 'start', // สคริปต์เพื่อเริ่มต้นเซิร์ฟเวอร์ Strapi, `start` เป็นค่าเริ่มต้น
+      env: {
+        APP_KEYS: 'your app keys', // คุณสามารถค้นหาได้ในไฟล์ .env ของโปรเจกต์ของคุณ
+        API_TOKEN_SALT: 'your api token salt',
+        ADMIN_JWT_SECRET: 'your admin jwt secret',
+        JWT_SECRET: 'your jwt secret',
+        NODE_ENV: 'production',
+        DATABASE_HOST: 'your-unique-url.rds.amazonaws.com', // Endpoint ฐานข้อมูลในแท็บ 'Connectivity & Security'
+        DATABASE_PORT: '5432',
+        DATABASE_NAME: 'strapi', // ชื่อ DB ในแท็บ 'Configuration'
+        DATABASE_USERNAME: 'postgres', // ชื่อผู้ใช้เริ่มต้น
+        DATABASE_PASSWORD: 'Password',
+        AWS_ACCESS_KEY_ID: 'aws-access-key-id',
+        AWS_ACCESS_SECRET: 'aws-access-secret', // หาได้จาก Amazon S3 Dashboard
+        AWS_REGION: 'aws-region',
+        AWS_BUCKET_NAME: 'my-project-bucket-name',
+      },
+    },
+  ],
+};
+```
+## เริ่มต้น PM2
+
+ใช้คำสั่งต่อไปนี้เพื่อเริ่มต้น PM2 ด้วยไฟล์ `ecosystem.config.js`:
+
+```bash
+cd ~
+pm2 start ecosystem.config.js
+```
+
+สามารถเข้าถึงโปรเจกต์ Strapi ผ่าน URL: `http://your-ip-address:1337/` 
+
+
+
+
+
+
+
+
