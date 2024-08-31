@@ -252,14 +252,14 @@ cd ./my-project/
 จากนั้นติดตั้งแพ็กเกจ `pg`:
 
 ```bash
-npm add pg
+yarn add pg
 ```
 ### 7. การติดตั้ง Strapi AWS S3 Upload Provider
 
 ติดตั้ง Strapi AWS S3 Upload Provider
 
 ```bash
-npm install @strapi/provider-upload-aws-s3
+yarn install @strapi/provider-upload-aws-s3
 ```
 แก้ไขไฟล์ที่ `./config/plugins.js` ด้วยการเพิ่มการตั้งค่าต่อไปนี้:
 
@@ -314,7 +314,7 @@ git clone https://github.com/your-name/your-project-repo.git
 
 ```bash
 cd ./my-project/
-npm install
+yarn install
 NODE_ENV=production npm run build
 ```
 ### 11. ติดตั้ง PM2 Runtime
