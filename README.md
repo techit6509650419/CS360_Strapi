@@ -164,9 +164,7 @@ yarn create strapi-app my-project
 
 ## การรันแอปพลิเคชัน Strapi
 
- ให้รันคำสั่งต่อไปนี้ในโฟลเดอร์โปรเจกต์:
-
-#### ใช้ Yarn
+### ใช้ Yarn
 
 ```bash
 yarn develop
@@ -269,7 +267,7 @@ npm add pg
 ```
 ### 7. การติดตั้ง Strapi AWS S3 Upload Provider
 
-### **ติดตั้ง Strapi AWS S3 Upload Provider**
+#### ติดตั้ง Strapi AWS S3 Upload Provider
 
 ```bash
 npm install @strapi/provider-upload-aws-s3
@@ -339,7 +337,7 @@ npm install pm2@latest -g
 
 ตั้งค่าไฟล์ `ecosystem.config.js` เพื่อกำหนดตัวแปรสภาพแวดล้อมที่เชื่อมต่อ Strapi กับฐานข้อมูล
 
-### 1. **สร้างและแก้ไขไฟล์ ecosystem.config.js**
+#### 1. สร้างและแก้ไขไฟล์ ecosystem.config.js
 
 ```bash
 cd ~
@@ -347,7 +345,7 @@ pm2 init
 sudo nano ecosystem.config.js
 ```
 
-### 2. **อัปเดตเนื้อหาไฟล์**
+#### 2. อัปเดตเนื้อหาไฟล์
 
 แทนที่เนื้อหาในไฟล์ `ecosystem.config.js` ด้วย
 
