@@ -216,30 +216,19 @@ node -v && npm -v
 
 การดำเนินการต่อไปนี้จะช่วยให้คุณแก้ไขปัญหาสิทธิ์ในการเข้าถึงจาก [npmjs.com](https://www.npmjs.com):
 
-### 1. **สร้างไดเรกทอรี `.npm-global` และตั้งค่าพาธไปยังไดเรกทอรีนี้สำหรับ `node_modules`**
-
    ```bash
    cd ~
    mkdir ~/.npm-global
+
    npm config set prefix '~/.npm-global'
-   ```
 
-### 2. **สร้าง (หรือแก้ไข) ไฟล์ `~/.profile`**
-
-   ```bash
    sudo nano ~/.profile
-   ```
    
    เพิ่มบรรทัดเหล่านี้ที่ด้านล่างของไฟล์ `~/.profile`:
 
-   ```bash
    # set PATH so global node modules install without permission issues
    export PATH=~/.npm-global/bin:$PATH
-   ```
 
-### 3. **อัปเดตตัวแปรระบบของคุณ**
-
-   ```bash
    source ~/.profile
    ```
 
@@ -267,7 +256,7 @@ npm add pg
 ```
 ### 7. การติดตั้ง Strapi AWS S3 Upload Provider
 
-#### ติดตั้ง Strapi AWS S3 Upload Provider
+ติดตั้ง Strapi AWS S3 Upload Provider
 
 ```bash
 npm install @strapi/provider-upload-aws-s3
@@ -337,16 +326,11 @@ npm install pm2@latest -g
 
 ตั้งค่าไฟล์ `ecosystem.config.js` เพื่อกำหนดตัวแปรสภาพแวดล้อมที่เชื่อมต่อ Strapi กับฐานข้อมูล
 
-#### 1. สร้างและแก้ไขไฟล์ ecosystem.config.js
-
 ```bash
 cd ~
 pm2 init
 sudo nano ecosystem.config.js
 ```
-
-#### 2. อัปเดตเนื้อหาไฟล์
-
 แทนที่เนื้อหาในไฟล์ `ecosystem.config.js` ด้วย
 
 ```javascript
