@@ -214,7 +214,7 @@ sudo yum install nodejs -y
 node -v && npm -v
 ```
 
-## 4. การสร้างและเปลี่ยนไดเรกทอรีเริ่มต้นของ npm
+## 3. การสร้างและเปลี่ยนไดเรกทอรีเริ่มต้นของ npm
 
 การดำเนินการต่อไปนี้จะช่วยให้คุณแก้ไขปัญหาสิทธิ์ในการเข้าถึงจาก [npmjs.com](https://www.npmjs.com):
 
@@ -231,7 +231,7 @@ node -v && npm -v
    ```bash
    sudo nano ~/.profile
    ```
-
+   
    เพิ่มบรรทัดเหล่านี้ที่ด้านล่างของไฟล์ `~/.profile`:
 
    ```bash
@@ -245,17 +245,17 @@ node -v && npm -v
    source ~/.profile
    ```
 
-##  5. ติดตั้ง Git
+##  4. ติดตั้ง Git
    ```bash
    sudo yum install -y git
    ```
 
-##  6. ติดตั้ง Yarn
+##  5. ติดตั้ง Yarn
    ```bash
    npm install -g yarn
    ```
 
-### ติดตั้ง `pg`
+### 6. ติดตั้ง `pg`
 
 ติดตั้งในเครื่องพัฒนา (development machine) ให้ไปที่ไดเรกทอรีรากของโปรเจกต์ Strapi 
 
@@ -267,18 +267,13 @@ cd ./my-project/
 ```bash
 npm add pg
 ```
-## การติดตั้งผู้ให้บริการอัปโหลด AWS S3 ของ Strapi
+## 7. การติดตั้ง Strapi AWS S3 Upload Provider
 
-### 1. ติดตั้งผู้ให้บริการอัปโหลด AWS S3
-
-ไปที่ไดเรกทอรีโปรเจกต์ขและรันคำสั่งต่อไปนี้:
+### ติดตั้ง Strapi AWS S3 Upload Provider
 
 ```bash
 npm install @strapi/provider-upload-aws-s3
 ```
-
-### 2. เปิดใช้งานและกำหนดค่าผู้ให้บริการ
-
 แก้ไขไฟล์ที่ `./config/plugins.js` ด้วยการเพิ่มการตั้งค่าต่อไปนี้:
 
 #### JavaScript
@@ -312,7 +307,7 @@ module.exports = ({ env }) => ({
 });
 ```
 
-## ส่งการเปลี่ยนแปลงไปยัง GitHub
+## 8. ส่งการเปลี่ยนแปลงไปยัง GitHub
 
 1. **เพิ่มไฟล์ทั้งหมดลงใน staging area:**
 
@@ -331,30 +326,26 @@ module.exports = ({ env }) => ({
    ```bash
    git push
    ```
-## การนำเข้าและติดตั้งโปรเจกต์จาก GitHub บน EC2
+## 9. การนำเข้าและติดตั้งโปรเจกต์จาก GitHub บน EC2
 
 ```bash
 cd ~
 git clone https://github.com/your-name/your-project-repo.git
 ```
 
-## ติดตั้งแพ็กเกจสำหรับโปรเจกต์
+## 10. ติดตั้งแพ็กเกจสำหรับโปรเจกต์
 
 ```bash
 cd ./my-project/
 npm install
 NODE_ENV=production npm run build
 ```
-## ติดตั้ง PM2 Runtime
+## 11. ติดตั้ง PM2 Runtime
 
 ```bash
 npm install pm2@latest -g
 ```
-คุณสามารถเพิ่มขั้นตอนในการตั้งค่าไฟล์ `ecosystem.config.js` และการตั้งค่าตัวแปรสภาพแวดล้อมใน README.md ของคุณได้ตามนี้:
-
----
-
-## การตั้งค่า PM2 Runtime
+## 12. การตั้งค่า PM2 Runtime
 
 ตั้งค่าไฟล์ `ecosystem.config.js` เพื่อกำหนดตัวแปรสภาพแวดล้อมที่เชื่อมต่อ Strapi กับฐานข้อมูล
 
@@ -368,7 +359,7 @@ sudo nano ecosystem.config.js
 
 ### 2. **อัปเดตเนื้อหาไฟล์**
 
-แทนที่เนื้อหาพื้นฐานในไฟล์ `ecosystem.config.js` ด้วย
+แทนที่เนื้อหาในไฟล์ `ecosystem.config.js` ด้วย
 
 ```javascript
 module.exports = {
@@ -398,7 +389,7 @@ module.exports = {
   ],
 };
 ```
-## เริ่มต้น PM2
+## 13. เริ่มต้น PM2
 
 ใช้คำสั่งต่อไปนี้เพื่อเริ่มต้น PM2 ด้วยไฟล์ `ecosystem.config.js`:
 
