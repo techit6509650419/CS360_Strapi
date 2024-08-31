@@ -162,6 +162,16 @@ yarn create strapi-app my-project
 
 - ใช้ปุ่มลูกศรเพื่อเลือก Skip
 
+## การรันแอปพลิเคชัน Strapi
+
+ ให้รันคำสั่งต่อไปนี้ในโฟลเดอร์โปรเจกต์:
+
+#### ใช้ Yarn
+
+```bash
+yarn develop
+```
+
 
 
 
