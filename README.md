@@ -199,6 +199,32 @@ git push -u origin main
 
 ### 1. สร้าง AWS EC2
 
+ ตั้งค่า Security Group ของ EC2
+
+1. **SSH**:
+   - **Type**: SSH
+   - **Protocol**: TCP
+   - **Port Range**: 22
+   - **Source**: `::/0` (IPv6) หรือ `0.0.0.0/0` (IPv4) เพื่ออนุญาตการเข้าถึง SSH จากทุกที่
+
+2. **HTTP**:
+   - **Type**: HTTP
+   - **Protocol**: TCP
+   - **Port Range**: 80
+   - **Source**: `0.0.0.0/0` (IPv4) และ `::/0` (IPv6) เพื่ออนุญาตการเข้าถึง HTTP จากทุกที่
+
+3. **HTTPS**:
+   - **Type**: HTTPS
+   - **Protocol**: TCP
+   - **Port Range**: 443
+   - **Source**: `0.0.0.0/0` (IPv4) และ `::/0` (IPv6) เพื่ออนุญาตการเข้าถึง HTTPS จากทุกที่
+
+4. **Custom TCP Rule**:
+   - **Type**: Custom TCP Rule
+   - **Protocol**: TCP
+   - **Port Range**: 1337
+   - **Source**: `0.0.0.0/0` (IPv4) เพื่ออนุญาตการเข้าถึง Strapi จากทุกที่
+
 ### 2. ติดตั้ง Node.js ด้วย npm บน
 
 ```bash
