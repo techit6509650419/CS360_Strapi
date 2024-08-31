@@ -320,7 +320,7 @@ NODE_ENV=production npm run build
 ### 11. ติดตั้ง PM2 Runtime
 
 ```bash
-npm install pm2@latest -g
+yarn install pm2@latest -g
 ```
 ### 12. การตั้งค่า PM2 Runtime
 
