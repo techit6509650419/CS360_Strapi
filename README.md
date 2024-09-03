@@ -225,7 +225,7 @@ git push -u origin main
    - **Port Range**: 1337
    - **Source**: `0.0.0.0/0` (IPv4) เพื่ออนุญาตการเข้าถึง Strapi จากทุกที่
 
-### 2. ติดตั้ง Node.js ด้วย npm บน
+### 2. ติดตั้ง Node.js ด้วย npm
 
 ```bash
 cd ~
@@ -285,7 +285,7 @@ yarn add pg
 ติดตั้ง Strapi AWS S3 Upload Provider
 
 ```bash
-yarn install @strapi/provider-upload-aws-s3
+yarn add @strapi/provider-upload-aws-s3
 ```
 แก้ไขไฟล์ที่ `./config/plugins.js` ด้วยการเพิ่มการตั้งค่าต่อไปนี้:
 
